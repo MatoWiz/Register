@@ -340,5 +340,6 @@ auth.onAuthStateChanged(user => {
         adminPanel.classList.add('hidden');
         productList.classList.add('hidden');
         scannerSection.classList.add('hidden');
+        guideModal.classList.add('hidden'); // Hide the guide modal
     }
 });
