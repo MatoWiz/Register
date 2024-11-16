@@ -323,10 +323,8 @@ function getGuideContent(role) {
 function closeGuide() {
     const neverShow = document.getElementById('never-show').checked;
     const user = auth.currentUser;
-    if (neverShow) {
-        db.collection('users').doc(user.uid).update({
-            showGuide: false
-        });
+    if (neverShow && user) {
+        db.collection('users').doc(user.uid).update({ showGuide: false });
     }
     guideModal.classList.add('hidden');
 }
