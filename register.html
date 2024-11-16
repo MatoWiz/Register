@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatoWiz</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Cairo&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>MatoWiz</h1>
+        <div id="language-switch">
+            <button onclick="setLanguage('en')">English</button>
+            <button onclick="setLanguage('ar')">العربية</button>
+        </div>
+    </header>
+    <main>
+        <!-- Authentication Section -->
+        <section id="auth">
+            <h2 data-i18n="login">Login</h2>
+            <form id="login-form">
+                <input type="email" id="username" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" data-i18n="login">Login</button>
+            </form>
+        </section>
+
+        <!-- Admin Panel -->
+        <section id="admin-panel" class="hidden">
+            <h2 data-i18n="admin_panel">Admin Panel</h2>
+            <!-- Create User -->
+            <div class="admin-section">
+                <h3 data-i18n="create_user">Create User</h3>
+                <form id="create-user-form">
+                    <input type="email" id="new-username" placeholder="Email" required>
+                    <input type="password" id="new-password" placeholder="Password" required>
+                    <select id="role" required>
+                        <option value="" disabled selected data-i18n="select_role">Select Role</option>
+                        <option value="Manager" data-i18n="manager">Manager</option>
+                        <option value="HeadCashier" data-i18n="head_cashier">Head Cashier</option>
+                        <option value="Cashier" data-i18n="cashier">Cashier</option>
+                    </select>
+                    <button type="submit" data-i18n="create">Create</button>
+                </form>
+            </div>
+            <!-- Manage Categories -->
+            <div class="admin-section">
+                <h3 data-i18n="manage_categories">Manage Categories</h3>
+                <form id="create-category-form">
+                    <input type="text" id="category-name" placeholder="Category Name" required>
+                    <button type="submit" data-i18n="create">Create</button>
+                </form>
+                <div id="categories-list"></div>
+            </div>
+        </section>
+
+        <!-- Product List -->
+        <section id="product-list" class="hidden">
+            <h2 data-i18n="products">Products</h2>
+            <div id="products"></div>
+        </section>
+
+        <!-- Barcode Scanner -->
+        <section id="scanner" class="hidden">
+            <h2 data-i18n="barcode_scanner">Barcode Scanner</h2>
+            <video id="scanner-video" width="300" height="200"></video>
+            <button id="start-scan" data-i18n="start_scan">Start Scan</button>
+        </section>
+    </main>
+
+    <!-- User Guide Modal -->
+    <div id="guide-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeGuide()">&times;</span>
+            <h2 data-i18n="guide">Guide</h2>
+            <p id="guide-content"></p>
+            <label>
+                <input type="checkbox" id="never-show">
+                <span data-i18n="never_show">Never show again</span>
+            </label>
+            <button onclick="closeGuide()" data-i18n="close">Close</button>
+        </div>
+    </div>
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js"></script>
+    <!-- QuaggaJS for Barcode Scanning -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <!-- Localization Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/21.6.14/i18next.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/6.1.5/i18nextBrowserLanguageDetector.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-http-backend/1.4.3/i18nextHttpBackend.min.js"></script>
+    <!-- App Script -->
+    <script src="js/app.js"></script>
+</body>
+</html>
